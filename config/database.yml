@@ -7,22 +7,22 @@
 default: &default
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
-  username: root
-  password:
+  host: <%= ENV.fetch("DB_HOST")%>
+  username: <%= ENV.fetch("DB_USER")%>
+  password: <%= ENV.fetch("DB_PASSWORD")%>
   timeout: 5000
 
 development:
   <<: *default
-  database: PRUEBABSALE
+  database: <%= ENV.fetch("DB_NAME")%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: PRUEBABSALE
+  database: <%= ENV.fetch("DB_NAME")%>
 
 production:
   <<: *default
-  database: PRUEBABSALE
+  database: <%= ENV.fetch("DB_NAME")%>
